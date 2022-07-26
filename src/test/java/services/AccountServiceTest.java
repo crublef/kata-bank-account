@@ -34,4 +34,12 @@ public class AccountServiceTest {
         //Assert
         assertEquals(1500, account.getBalance());
     }
+
+    @Test
+    public void should_withdraw_one_amount_in_my_account() {
+        // Test
+        accountService.withdraw(account,500);
+        //Assert
+        assertEquals(-500, account.getBalance());
+    }
 }

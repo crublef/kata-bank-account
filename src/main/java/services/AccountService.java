@@ -11,4 +11,8 @@ public class AccountService {
     public void deposit(Account account, int amount) {
         account.deposit(amount);
     }
+
+    public void withdraw(Account account, int amount) {
+        account.withdraw(amount);
+    }
 }
