@@ -49,6 +49,6 @@ public class AccountServiceTest {
         accountService.deposit(account,1000);
         String statements = accountService.printStatements(account);
         //Assert
-        assertEquals("date=2022-07-27, amount=1000, balance=1000", statements);
+        assertEquals("date=2022-07-27, amount= +1000, balance=1000", statements);
     }
 }

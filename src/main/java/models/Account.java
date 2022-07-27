@@ -1,5 +1,7 @@
 package models;
 
+import interfaces.IAccountStatement;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 public class Account {
 
     private int balance;
-    private final List<AccountStatement> accountStatements;
+    private final List<IAccountStatement> accountStatements;
 
     public Account(int balance) {
         this.balance = balance;
@@ -18,19 +20,21 @@ public class Account {
         return balance;
     }
     public void deposit(int amount) {
-        this.balance += amount;
-        this.accountStatements.add(new AccountStatement(LocalDate.now(), amount, balance));
+        IAccountStatement deposit = new Deposit(LocalDate.now(), amount, balance);
+        this.balance = deposit.proceed();
+        this.accountStatements.add(deposit);
     }
 
     public void withdraw(int amount) {
-        this.balance -= amount;
-        this.accountStatements.add(new AccountStatement(LocalDate.now(), amount, balance));
+        IAccountStatement withdrawal = new Withdrawal(LocalDate.now(), amount, balance);
+        this.balance = withdrawal.proceed();
+        this.accountStatements.add(withdrawal);
     }
 
     public String printStatements() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (AccountStatement accountStatement : accountStatements) {
-            stringBuilder.append(accountStatement.toString());
+        for (IAccountStatement accountStatement : accountStatements) {
+            stringBuilder.append(accountStatement.print());
         }
         return stringBuilder.toString();
     }

@@ -1,5 +1,7 @@
 package models;
 
+import interfaces.IAccountStatement;
+
 import java.time.LocalDate;
 
 /**
@@ -9,22 +11,16 @@ import java.time.LocalDate;
  *         Cette classe définie un enregistrement d'un opération bancaire
  *
  */
-public class AccountStatement {
+public abstract class AccountStatement implements IAccountStatement {
 
-	private final LocalDate date;
-	private final int amount;
-	private final int balance;
+	protected LocalDate localDate;
+	protected int amount;
 
-	public AccountStatement(LocalDate date, int amount, int balance) {
-		this.date = date;
+	protected int balance;
+
+	protected AccountStatement(LocalDate localDate, int amount, int balance) {
+		this.localDate = localDate;
 		this.amount = amount;
 		this.balance = balance;
-	}
-
-	@Override
-	public String toString() {
-		return "date=" + date +
-				", amount=" + amount +
-				", balance=" + balance;
 	}
 }
