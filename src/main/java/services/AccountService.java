@@ -15,4 +15,8 @@ public class AccountService {
     public void withdraw(Account account, int amount) {
         account.withdraw(amount);
     }
+
+    public String printStatements(Account account) {
+        return account.printStatements();
+    }
 }

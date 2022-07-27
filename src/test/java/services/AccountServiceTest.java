@@ -42,4 +42,13 @@ public class AccountServiceTest {
         //Assert
         assertEquals(-500, account.getBalance());
     }
+
+    @Test
+    public void should_see_the_full_statement_of_my_account() {
+        // Test
+        accountService.deposit(account,1000);
+        String statements = accountService.printStatements(account);
+        //Assert
+        assertEquals("date=2022-07-27, amount=1000, balance=1000", statements);
+    }
 }
