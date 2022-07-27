@@ -2,6 +2,13 @@ package models;
 
 import java.time.LocalDate;
 
+/**
+ *
+ * @author Florent Crublé
+ *
+ * Cette classe définie un dépôt bancaire
+ *
+ */
 public class Deposit extends AccountStatement{
 
     public Deposit(LocalDate localDate, int amount, int balance) {
@@ -16,8 +23,6 @@ public class Deposit extends AccountStatement{
 
     @Override
     public String print() {
-        return "date=" + localDate +
-                ", amount= +" + amount +
-                ", balance=" + balance;
+        return localDate + ", +" + amount + ", balance=" + balance;
     }
 }

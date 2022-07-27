@@ -1,7 +1,19 @@
 package services;
 
+import interfaces.IAccountStatement;
 import models.Account;
+import models.Deposit;
+import models.Withdrawal;
 
+import java.time.LocalDate;
+
+/**
+ *
+ * @author Florent Crublé
+ *
+ * Ce Service permet les opérations bancaires d'un compte ainsi que d'afficher son historique
+ *
+ */
 public class AccountService {
 
     public Account create() {
@@ -9,14 +21,23 @@ public class AccountService {
     }
 
     public void deposit(Account account, int amount) {
-        account.deposit(amount);
+        IAccountStatement deposit = new Deposit(LocalDate.now(), amount, account.getBalance());
+        account.setBalance(deposit.proceed());
+        account.addStatement(deposit);
     }
 
     public void withdraw(Account account, int amount) {
-        account.withdraw(amount);
+        IAccountStatement withdrawal = new Withdrawal(LocalDate.now(), amount, account.getBalance());
+        account.setBalance(withdrawal.proceed());
+        account.addStatement(withdrawal);
     }
 
     public String printStatements(Account account) {
-        return account.printStatements();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (IAccountStatement accountStatement : account.getAccountStatements()) {
+            stringBuilder.append(accountStatement.print());
+            stringBuilder.append(System.getProperty("line.separator"));
+        }
+        return stringBuilder.toString();
     }
 }

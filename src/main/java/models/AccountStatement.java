@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * 
  * @author Florent Crublé
  * 
- *         Cette classe définie un enregistrement d'un opération bancaire
+ * Cette classe définie un enregistrement d'un opération bancaire
  *
  */
 public abstract class AccountStatement implements IAccountStatement {

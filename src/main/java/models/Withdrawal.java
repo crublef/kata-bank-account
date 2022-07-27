@@ -2,6 +2,13 @@ package models;
 
 import java.time.LocalDate;
 
+/**
+ *
+ * @author Florent Crublé
+ *
+ * Cette classe définie un retrait bancaire
+ *
+ */
 public class Withdrawal extends AccountStatement{
 
     public Withdrawal(LocalDate localDate, int amount, int balance) {
@@ -16,8 +23,6 @@ public class Withdrawal extends AccountStatement{
 
     @Override
     public String print() {
-        return "date=" + localDate +
-                ", amount= -" + amount +
-                ", balance=" + balance;
+        return localDate + ", -" + amount + ", balance=" + balance;
     }
 }

@@ -1,11 +1,16 @@
 package models;
 
 import interfaces.IAccountStatement;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Florent Crublé
+ *
+ * Cette classe définie un compte bancaire
+ *
+ */
 public class Account {
 
     private int balance;
@@ -19,23 +24,16 @@ public class Account {
     public int getBalance() {
         return balance;
     }
-    public void deposit(int amount) {
-        IAccountStatement deposit = new Deposit(LocalDate.now(), amount, balance);
-        this.balance = deposit.proceed();
-        this.accountStatements.add(deposit);
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
-    public void withdraw(int amount) {
-        IAccountStatement withdrawal = new Withdrawal(LocalDate.now(), amount, balance);
-        this.balance = withdrawal.proceed();
-        this.accountStatements.add(withdrawal);
+    public List<IAccountStatement> getAccountStatements() {
+        return accountStatements;
     }
 
-    public String printStatements() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (IAccountStatement accountStatement : accountStatements) {
-            stringBuilder.append(accountStatement.print());
-        }
-        return stringBuilder.toString();
+    public void addStatement(IAccountStatement statement) {
+        this.accountStatements.add(statement);
     }
 }
